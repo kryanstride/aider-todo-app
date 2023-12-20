@@ -47,6 +47,18 @@ app.post('/todos', (req, res) => {
   });
 });
 
+app.post('/reset', (req, res) => {
+  db.serialize(() => {
+    db.run('DELETE FROM todos', [], (err) => {
+      if (err) {
+        res.status(500).json({ "error": err.message });
+        return;
+      }
+      res.json({ "message": "success" });
+    });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
