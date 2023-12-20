@@ -13,7 +13,6 @@ const db = new sqlite3.Database(':memory:', (err) => {
   if (err) {
     return console.error(err.message);
   }
-  console.log('Connected to the in-memory SQLite database.');
 });
 
 db.serialize(() => {
@@ -61,4 +60,5 @@ app.post('/reset', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+  console.log('Connected to the in-memory SQLite database.');
 });
